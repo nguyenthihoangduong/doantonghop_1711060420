@@ -2,7 +2,7 @@ package company.danhy.clothesuit.activity.activity.model;
 
 import java.io.Serializable;
 
-public class Sanpham  {
+public class Sanpham implements Serializable {
     public int id;
     public String tensanpham;
     public Integer giasanpham;

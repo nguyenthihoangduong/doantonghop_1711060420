@@ -91,6 +91,64 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
+                    case 1:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,ThoiTrangActivity.class);
+                            intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 2:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,DungCuHangNgayActivity.class);
+                            intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 3:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,ThucAnActivity.class);
+                            intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 4:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,SucKhoeActivity.class);
+                            intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 5:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,LienHeActivity.class);
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 6:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,SucKhoeActivity.class);
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
 
                 }
             }
@@ -160,7 +218,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     Toast.makeText(getApplicationContext(), tenloaisanpham, Toast.LENGTH_SHORT).show();
-                    mangloaisanpham.add( new Loaisp(0,"Liên hệ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCeVuVWGdIbeB88vj6moAw0vSEt5dPuRFN0FZqy5UdS5wN1wp"));
+                    mangloaisanpham.add( new Loaisp(0,"Dịch vụ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCeVuVWGdIbeB88vj6moAw0vSEt5dPuRFN0FZqy5UdS5wN1wp"));
+                    mangloaisanpham.add(new Loaisp(2,"Liên hệ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCeVuVWGdIbeB88vj6moAw0vSEt5dPuRFN0FZqy5UdS5wN1wp"));
                     mangloaisanpham.add(new Loaisp(2,"Thông tin","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSynBh4ywTCWrkfmGUUKvbhd7ahU-tm2iyTQPnLQixfOr7q-9QzKQ"));
                 }
             }
