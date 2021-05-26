@@ -1,7 +1,6 @@
 package company.danhy.clothesuit.activity.activity.activity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ import java.text.DecimalFormat;
 import company.danhy.clothesuit.R;
 
 //import company.danhy.clothesuit.activity.activity.model.Giohang;
+import company.danhy.clothesuit.activity.activity.model.Giohang;
 import company.danhy.clothesuit.activity.activity.model.Sanpham;
 
 public class ChiTietSanPhamActivity extends AppCompatActivity {
@@ -45,59 +45,63 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         ActionToolbar();
         getinfomation();
         CatchEventSpiner();
-//        EventButton();
+        EventButton();
     }
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menuu,menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch(item.getItemId()){
-//            case R.id.menugiohang:
-//                Intent intent=new Intent(getApplicationContext(), company.danhy.clothesuit.activity.activity.activity.Giohang.class);
-//                startActivity(intent);
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-//
-//    private void EventButton() {
-//        buttondatmua.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(MainActivity.manggiohang.size()>0){
-//                    int sl=Integer.parseInt(spinner.getSelectedItem().toString());
-//                    boolean exit =false;
-//                    for(int i=0;i<MainActivity.manggiohang.size();i++){
-//                        if(MainActivity.manggiohang.get(i).getIdsp()==id){
-//                            MainActivity.manggiohang.get(i).setSoluongsp(MainActivity.manggiohang.get(i).getSoluongsp()+sl);
-//                            if(MainActivity.manggiohang.get(i).getSoluongsp()>=10){
-//                                MainActivity.manggiohang.get(i).setSoluongsp(10);
-//                            }
-//                            MainActivity.manggiohang.get(i).setGiasp(Giachitiet*MainActivity.manggiohang.get(i).getSoluongsp());
-//                            exit=true;
-//                        }
-//                    }
-//                    if(exit==false){
-//                        int soluong=Integer.parseInt(spinner.getSelectedItem().toString());
-//                        long giamoi=Giachitiet*soluong;
-//                        MainActivity.manggiohang.add(new Giohang(id,Tenchitiet,giamoi,Hinhanhchitiet,soluong));
-//
-//                    }
-//
-//                }else{
-//                    int soluong=Integer.parseInt(spinner.getSelectedItem().toString());
-//                    long giamoi=Giachitiet*soluong;
-//                    MainActivity.manggiohang.add(new Giohang(id,Tenchitiet,giamoi,Hinhanhchitiet,soluong));
-//                }
-//                Intent intent=new Intent(getApplicationContext(), company.danhy.clothesuit.activity.activity.activity.Giohang.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menuu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent=new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    private void EventButton() {
+        buttondatmua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(MainActivity.manggiohang.size()>0){
+                    int sl=Integer.parseInt(spinner.getSelectedItem().toString());
+                    boolean exit =false;
+                    for(int i=0;i<MainActivity.manggiohang.size();i++){
+                        if(MainActivity.manggiohang.get(i).getIdsp()==id){
+                            MainActivity.manggiohang.get(i).setSoluongsp(MainActivity.manggiohang.get(i).getSoluongsp()+sl);
+                            if(MainActivity.manggiohang.get(i).getSoluongsp()>=10){
+                                MainActivity.manggiohang.get(i).setSoluongsp(10);
+                            }
+                            MainActivity.manggiohang.get(i).setGiasp(Giachitiet*MainActivity.manggiohang.get(i).getSoluongsp());
+                            exit=true;
+                        }
+                    }
+                    if(exit==false){
+                        int soluong=Integer.parseInt(spinner.getSelectedItem().toString());
+                        long giamoi=Giachitiet*soluong;
+                        MainActivity.manggiohang.add(new Giohang(id,Tenchitiet,giamoi,Hinhanhchitiet,soluong));
+
+                    }
+
+                }else{
+                    int soluong=Integer.parseInt(spinner.getSelectedItem().toString());
+                    long giamoi=Giachitiet*soluong;
+                    MainActivity.manggiohang.add(new Giohang(id,Tenchitiet,giamoi,Hinhanhchitiet,soluong));
+                }
+                Intent intent=new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+
+
     private void CatchEventSpiner() {
         Integer[] soluong=new Integer[]{1,2,3,4,5,6,7,8,9,10};
         ArrayAdapter<Integer> arrayAdapter =new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_dropdown_item,soluong );

@@ -3,7 +3,6 @@ package company.danhy.clothesuit.activity.activity.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import company.danhy.clothesuit.R;
-import company.danhy.clothesuit.activity.activity.adapter.ThoitrangAdapter;
 import company.danhy.clothesuit.activity.activity.adapter.ThucanAdapter;
 import company.danhy.clothesuit.activity.activity.model.Sanpham;
 import company.danhy.clothesuit.activity.activity.ultil.Server;
@@ -69,6 +67,22 @@ public class ThucAnActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menuu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent=new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void LoadMoreData() {
         lvta.setOnItemClickListener(new AdapterView.OnItemClickListener() {

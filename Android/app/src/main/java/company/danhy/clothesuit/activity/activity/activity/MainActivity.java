@@ -7,10 +7,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -36,7 +38,9 @@ import java.util.ArrayList;
 
 import company.danhy.clothesuit.R;
 import company.danhy.clothesuit.activity.activity.adapter.LoaispAdapter;
+import company.danhy.clothesuit.activity.activity.adapter.SanPhamFlashSaleAdapter;
 import company.danhy.clothesuit.activity.activity.adapter.SanphamAdapter;
+import company.danhy.clothesuit.activity.activity.model.Giohang;
 import company.danhy.clothesuit.activity.activity.model.Loaisp;
 import company.danhy.clothesuit.activity.activity.model.Sanpham;
 import company.danhy.clothesuit.activity.activity.ultil.Server;
@@ -46,17 +50,21 @@ public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar ;
     ViewFlipper viewFlipper;
-    RecyclerView recyclerViewmanhinhchinh;
+    RecyclerView recyclerViewmanhinhchinh,recyclerViewflashSaleItems;
     NavigationView navigationView;
     ListView listViewmanhinhchinh;
     DrawerLayout drawerLayout;
     ArrayList <Loaisp> mangloaisanpham;
     ArrayList<Sanpham> mangsanpham;
     SanphamAdapter sanphamAdapter;
+    ArrayList<Sanpham> mangSanPhamFlashSale;
+    SanPhamFlashSaleAdapter sanPhamFlashSaleAdapter;
     LoaispAdapter loaispAdapter;
     int id=0;
     String tenloaisanpham="";
     String hinhanhloaisanpham="";
+//    UserLocalStore userLocalStore;
+    public static ArrayList<Giohang>manggiohang;
 
 
     @Override
@@ -70,11 +78,55 @@ public class MainActivity extends AppCompatActivity {
             getDuLieuLoaiSanPham();
             getDuLieuSPMoiNhat();
             catOnItemListView();
+            getDuLieuSPFlashSale();
         }else{
             checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối ");
             finish();
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menuu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+//        User user = userLocalStore.getLoggedInUser();
+        switch(item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent=new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+//                break;
+//            case R.id.menuLogout:
+//                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                builder.setTitle("Logout");
+//                builder.setMessage("Username : "+user.username+"\nEmail :"+ user.email);
+//                builder.setCancelable(false);
+//                builder.setPositiveButton("Trở về", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        Toast.makeText(MainActivity.this, "Mời bạn tiếp tục mua sắm", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                builder.setNegativeButton("Logout", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        //Code Logout
+//                        userLocalStore.clearUserData();
+//                        userLocalStore.setUserLoggedIn(false);
+//                        Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+//                        startActivity(loginIntent);
+//                        Toast.makeText(MainActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
+//                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void catOnItemListView() {
@@ -153,6 +205,44 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void getDuLieuSPFlashSale() {
+        RequestQueue requestQueue =Volley.newRequestQueue(getApplicationContext());
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Server.duongDanflashsale, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                if (response != null) {
+                    int ID = 0;
+                    String Tensanphamsale = "";
+                    Integer Giasanphamsale = 0;
+                    String Hinhanhsanphamsale = "";
+                    String Motasanphamsale = "";
+                    int IDsanphamsale = 0;
+                    for(int i=0;i<response.length();i++){
+                        try {
+                            JSONObject jsonObject  =response.getJSONObject(i);
+                            ID=jsonObject.getInt("id");
+                            Tensanphamsale=jsonObject.getString("tensp");
+                            Giasanphamsale=jsonObject.getInt("giasp");
+                            Hinhanhsanphamsale=jsonObject.getString("hinhanhsp");
+                            Motasanphamsale=jsonObject.getString("motasp");
+                            IDsanphamsale=jsonObject.getInt("idsanpham");
+                            mangSanPhamFlashSale.add(new Sanpham(ID,Tensanphamsale,Giasanphamsale,Hinhanhsanphamsale,Motasanphamsale,IDsanphamsale));
+                            sanPhamFlashSaleAdapter.notifyDataSetChanged();
+                        }  catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void getDuLieuSPMoiNhat() {
@@ -281,14 +371,33 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationview);
         listViewmanhinhchinh = findViewById(R.id.listviewmanhinhchinh);
         drawerLayout = findViewById(R.id.drawerlayout);
+
+        recyclerViewflashSaleItems = findViewById(R.id.recyclerViewHotItems);
+
         mangloaisanpham =new ArrayList<>();
         mangloaisanpham.add(0,new Loaisp(0,"Trang chính","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyyPFbxER9CaziwnRh9UgBFqauaA2DOR_ZTCXFkK9iLmFdeoPE5w"));
+
         loaispAdapter=new LoaispAdapter(mangloaisanpham,getApplicationContext());
         listViewmanhinhchinh.setAdapter(loaispAdapter);
+
         mangsanpham=new ArrayList<>();
         sanphamAdapter =new SanphamAdapter(getApplicationContext(),mangsanpham);
+
+        mangSanPhamFlashSale=new ArrayList<>();
+        sanPhamFlashSaleAdapter = new SanPhamFlashSaleAdapter(getApplicationContext(),mangSanPhamFlashSale);
+
         recyclerViewmanhinhchinh.setHasFixedSize(true);
         recyclerViewmanhinhchinh.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
         recyclerViewmanhinhchinh.setAdapter(sanphamAdapter);
+
+        recyclerViewflashSaleItems.setHasFixedSize(true);
+        recyclerViewflashSaleItems.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.HORIZONTAL,false));
+        recyclerViewflashSaleItems.setAdapter(sanPhamFlashSaleAdapter);
+
+        if(manggiohang!=null){
+
+        }else{
+            manggiohang=new ArrayList<>();
+        }
     }
 }

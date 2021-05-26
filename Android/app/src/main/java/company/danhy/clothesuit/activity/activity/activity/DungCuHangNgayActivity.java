@@ -3,11 +3,9 @@ package company.danhy.clothesuit.activity.activity.activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,7 +32,6 @@ import java.util.Map;
 
 import company.danhy.clothesuit.R;
 import company.danhy.clothesuit.activity.activity.adapter.DungcuhangngayAdapter;
-import company.danhy.clothesuit.activity.activity.adapter.ThoitrangAdapter;
 import company.danhy.clothesuit.activity.activity.model.Sanpham;
 import company.danhy.clothesuit.activity.activity.ultil.Server;
 import company.danhy.clothesuit.activity.activity.ultil.checkconnect;
@@ -69,6 +66,22 @@ public class DungCuHangNgayActivity extends AppCompatActivity {
         }
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menuu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent=new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void LoadMoreData() {
         lvdchn.setOnItemClickListener(new AdapterView.OnItemClickListener() {
