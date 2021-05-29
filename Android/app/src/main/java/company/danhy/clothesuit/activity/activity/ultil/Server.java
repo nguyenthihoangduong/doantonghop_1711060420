@@ -14,5 +14,7 @@ public class Server {
     public static String duongDanflashsale = "http://"+ localhost+ "/server/getsanphamflashsale.php";
     public static String duongDanThongTinKhachHang ="http://"+ localhost +"/server/thongtinkhachhang.php";
     public static String duongDanChiTietDonHang ="http://"+ localhost +"/server/chitietdonhang.php";
-
+    public static String duongDanDichVu ="http://"+ localhost +"/server/getdichvu.php";
+    public static String signup ="http://"+ localhost +"/server/signup.php";
+    public static String signin ="http://"+ localhost +"/server/signin.php";
  }

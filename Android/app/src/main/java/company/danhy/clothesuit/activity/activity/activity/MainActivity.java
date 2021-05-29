@@ -145,8 +145,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,ThoiTrangActivity.class);
-                            intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
+                            Intent intent =new Intent(MainActivity.this,GioiThieuActivity.class);
                             startActivity(intent);
                         }else{
                             checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
@@ -155,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 2:
                         if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,DungCuHangNgayActivity.class);
+                            Intent intent =new Intent(MainActivity.this,ThoiTrangActivity.class);
                             intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
                             startActivity(intent);
                         }else{
@@ -165,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 3:
                         if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,ThucAnActivity.class);
+                            Intent intent =new Intent(MainActivity.this,DungCuHangNgayActivity.class);
                             intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
                             startActivity(intent);
                         }else{
@@ -175,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,SucKhoeActivity.class);
+                            Intent intent =new Intent(MainActivity.this,ThucAnActivity.class);
                             intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
                             startActivity(intent);
                         }else{
@@ -185,7 +184,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 5:
                         if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,LienHeActivity.class);
+                            Intent intent =new Intent(MainActivity.this,SucKhoeActivity.class);
+                            intent.putExtra("idLoaiSanPham",mangloaisanpham.get(position).getId());
                             startActivity(intent);
                         }else{
                             checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
@@ -194,7 +194,25 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 6:
                         if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,SucKhoeActivity.class);
+                            Intent intent =new Intent(MainActivity.this,DichvuActivity.class);
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 7:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,LienHeActivity.class);
+                            startActivity(intent);
+                        }else{
+                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
+                        }
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case 8:
+                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+                            Intent intent =new Intent(MainActivity.this,ThongTinActivity.class);
                             startActivity(intent);
                         }else{
                             checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
@@ -292,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
                 if(response != null){
+                    mangloaisanpham.add(new Loaisp(2,"Giới Thiệu","https://image.flaticon.com/icons/png/128/1808/1808939.png"));
 
                     for(int i = 0;i < response.length();i++){
                         try {
@@ -308,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     Toast.makeText(getApplicationContext(), tenloaisanpham, Toast.LENGTH_SHORT).show();
-                    mangloaisanpham.add( new Loaisp(0,"Dịch vụ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCeVuVWGdIbeB88vj6moAw0vSEt5dPuRFN0FZqy5UdS5wN1wp"));
+                    mangloaisanpham.add( new Loaisp(0,"Dịch vụ","https://thumbs.dreamstime.com/b/illustration-emblem-dog-hair-salon-haircut-grooming-shop-illustration-emblem-dog-hair-salon-haircut-grooming-shop-168214154.jpg"));
                     mangloaisanpham.add(new Loaisp(2,"Liên hệ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCeVuVWGdIbeB88vj6moAw0vSEt5dPuRFN0FZqy5UdS5wN1wp"));
                     mangloaisanpham.add(new Loaisp(2,"Thông tin","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSynBh4ywTCWrkfmGUUKvbhd7ahU-tm2iyTQPnLQixfOr7q-9QzKQ"));
                 }

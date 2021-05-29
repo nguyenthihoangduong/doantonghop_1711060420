@@ -19,6 +19,9 @@
     <LinearLayout
         android:layout_weight="7"
         android:layout_width="match_parent"
+        android:baselineAligned="false"
+
+        android:descendantFocusability="blocksDescendants"
         android:layout_height="0dp">
         <FrameLayout
             android:layout_width="match_parent"
@@ -31,7 +34,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ListView
+                android:descendantFocusability="blocksDescendants"
+                android:clickable="false"
+                android:focusable="false"
                 android:id="@+id/listviewgiohang"
+                android:longClickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

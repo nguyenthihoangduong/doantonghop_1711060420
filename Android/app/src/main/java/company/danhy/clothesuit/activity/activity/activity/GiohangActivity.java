@@ -6,12 +6,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
@@ -64,6 +66,8 @@ public class GiohangActivity extends AppCompatActivity {
         listViewgiohang.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                Toast.makeText(getApplicationContext(), "Xóa", Toast.LENGTH_LONG).show();
+                Log.d("a","b");
                 AlertDialog.Builder builder=new AlertDialog.Builder(GiohangActivity.this);
                 builder.setTitle("Xác nhận xóa sản phẩm");
                 builder.setMessage("Bạn có chắc chắn xóa sản phẩm này");
@@ -134,6 +138,7 @@ public class GiohangActivity extends AppCompatActivity {
 
     private void anhxa() {
         listViewgiohang=findViewById(R.id.listviewgiohang);
+        listViewgiohang.setLongClickable(true);
         txtthongbao=findViewById(R.id.textviewthongbaogiohangtrong);
         txttongtien=findViewById(R.id.textviewtongtien);
         btthanhtoan=findViewById(R.id.buttonthanhtoan);

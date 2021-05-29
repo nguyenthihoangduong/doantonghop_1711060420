@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.activity.activity.ThongTinKhachHangActivity"></activity>
+
         <activity android:name=".activity.activity.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,10 +26,14 @@
         <activity android:name=".activity.activity.activity.ThucAnActivity" />
         <activity android:name=".activity.activity.activity.SucKhoeActivity" />
         <activity android:name=".activity.activity.activity.LienHeActivity" />
-        <activity android:name=".activity.activity.activity.ThongTinActivity" />
         <activity android:name=".activity.activity.activity.ChiTietSanPhamActivity" />
         <activity android:name=".activity.activity.activity.GiohangActivity" />
         <activity android:name=".activity.activity.activity.ThongtinkhachhangActivity" />
+        <activity android:name=".activity.activity.activity.DichvuActivity" />
+        <activity android:name=".activity.activity.activity.ThongTinActivity" />
+        <activity android:name=".activity.activity.activity.GioiThieuActivity" />
+        <activity android:name=".activity.activity.activity.LoginActivity" />
+        <activity android:name=".activity.activity.activity.RegisterActivity" />
     </application>
 
 </manifest>

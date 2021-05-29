@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -46,6 +48,7 @@ public class GiohangAdapter extends BaseAdapter {
      public TextView txttengiohang,txtgiagiohang;
      public ImageView imggiohang;
      public Button btleft,btvalue,btright;
+     LinearLayout donggiohang;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -60,6 +63,7 @@ public class GiohangAdapter extends BaseAdapter {
           viewHolder.btleft=convertView.findViewById(R.id.buttonminusleft);
           viewHolder.btvalue=convertView.findViewById(R.id.buttonvalue);
           viewHolder.btright=convertView.findViewById(R.id.buttonminusright);
+          viewHolder.donggiohang = convertView.findViewById(R.id.donggiohang);
           convertView.setTag(viewHolder);
       }else{
           viewHolder= (ViewHolder) convertView.getTag();
@@ -132,6 +136,17 @@ public class GiohangAdapter extends BaseAdapter {
 
             }
         });
+        viewHolder.donggiohang.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+               // Toast.makeText(context, "33333999", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
+
+
+
         return convertView;
     }
 }
