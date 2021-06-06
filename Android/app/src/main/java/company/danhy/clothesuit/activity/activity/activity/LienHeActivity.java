@@ -1,49 +1,60 @@
 package company.danhy.clothesuit.activity.activity.activity;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.ListView;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import company.danhy.clothesuit.R;
-//import company.danhy.clothesuit.activity.activity.adapter.DepAdapter;
-import company.danhy.clothesuit.activity.activity.model.Sanpham;
-import company.danhy.clothesuit.activity.activity.ultil.Server;
 import company.danhy.clothesuit.activity.activity.ultil.checkconnect;
 
 public class LienHeActivity extends AppCompatActivity {
-
-
+    Toolbar toolbarlh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lienhe);
+        if(checkconnect.isNetworkAvailable(getApplicationContext())){
+            AnhXa();
+            ActionToolbar();
+
+        }
+        else{
+            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn vui lòng kiểm tra lại Internet");
+            finish();
+        }
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menuu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.menugiohang:
+                Intent intent=new Intent(getApplicationContext(), GiohangActivity.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void ActionToolbar() {
+        setSupportActionBar(toolbarlh);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbarlh.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    private void AnhXa() {
+        toolbarlh = findViewById(R.id.toolbarlienhe);
+
     }
 }

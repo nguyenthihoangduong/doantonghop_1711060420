@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".activity.activity.activity.MainActivity" />-->
         <activity android:name=".activity.activity.activity.ThoiTrangActivity" />
         <activity android:name=".activity.activity.activity.DungCuHangNgayActivity" />
         <activity android:name=".activity.activity.activity.ThucAnActivity" />
@@ -32,8 +33,7 @@
         <activity android:name=".activity.activity.activity.DichvuActivity" />
         <activity android:name=".activity.activity.activity.ThongTinActivity" />
         <activity android:name=".activity.activity.activity.GioiThieuActivity" />
-        <activity android:name=".activity.activity.activity.LoginActivity" />
-        <activity android:name=".activity.activity.activity.RegisterActivity" />
+
     </application>
 
 </manifest>

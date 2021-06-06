@@ -210,15 +210,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
-                    case 8:
-                        if(checkconnect.isNetworkAvailable(getApplicationContext())){
-                            Intent intent =new Intent(MainActivity.this,ThongTinActivity.class);
-                            startActivity(intent);
-                        }else{
-                            checkconnect.ShowToast_Short(getApplicationContext(),"Bạn kiểm tra lại kết nối!");
-                        }
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
+
 
                 }
             }
@@ -329,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), tenloaisanpham, Toast.LENGTH_SHORT).show();
                     mangloaisanpham.add( new Loaisp(0,"Dịch vụ","https://thumbs.dreamstime.com/b/illustration-emblem-dog-hair-salon-haircut-grooming-shop-illustration-emblem-dog-hair-salon-haircut-grooming-shop-168214154.jpg"));
                     mangloaisanpham.add(new Loaisp(2,"Liên hệ","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpCeVuVWGdIbeB88vj6moAw0vSEt5dPuRFN0FZqy5UdS5wN1wp"));
-                    mangloaisanpham.add(new Loaisp(2,"Thông tin","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSynBh4ywTCWrkfmGUUKvbhd7ahU-tm2iyTQPnLQixfOr7q-9QzKQ"));
+
                 }
             }
         }, new Response.ErrorListener() {
