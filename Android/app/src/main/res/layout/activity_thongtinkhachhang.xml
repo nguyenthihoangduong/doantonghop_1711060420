@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/colorToolBarTitle"
+    android:background="@drawable/hinhthongtin"
     tools:context=".activity.activity.activity.ThongtinkhachhangActivity">
 <LinearLayout
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/borderkhung"
+    android:background="@drawable/spinner"
     android:layout_marginRight="20dp"
     android:layout_marginLeft="20dp"
     android:layout_marginBottom="40dp"
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content">
         <Button
         android:layout_marginLeft="20dp"
-        android:background="#0000FF"
+        android:background="#008000"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         android:padding="10dp"
@@ -94,7 +95,7 @@
         android:layout_height="wrap_content" />
         <Button
             android:layout_marginLeft="40dp"
-            android:background="#0000FF"
+            android:background="#008000"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:padding="10dp"
